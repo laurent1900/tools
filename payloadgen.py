@@ -2,7 +2,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-
+#生成数字对齐
 def gen(num):
 	f = open('num.txt','w+')
 	n = str('%0'+str(num)+'d')
@@ -11,6 +11,7 @@ def gen(num):
 		f.write(i)
 	f.close()
 
+#生成数字不对齐
 def gen2(num):
 	f = open('num.txt','w+')
 	# n = str('%0'+str(num)+'d')
@@ -19,10 +20,12 @@ def gen2(num):
 		f.write(i)
 	f.close()
 
+#查看出口IP
 def iploc():
 	url = 'http://ifconfig.me'
 	r = requests.get(url)
-	print(r.content)
+	print(r.text)
 
 if __name__ == '__main__':
-	gen(2)
+	gen2(15)
+	# iploc()
