@@ -3,7 +3,7 @@ import os
 import re
 
 def file_rename():
-    pwd = os.getcwdu()
+    pwd = os.getcwd()
     for i in os.listdir(pwd):
         if 'xml' in i:
             a = re.sub(r"\(.*\)","",i)
