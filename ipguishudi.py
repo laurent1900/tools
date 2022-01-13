@@ -29,12 +29,12 @@ def main(ip):
 	}
 	result = requests.get(url,headers=headers,timeout=30)
 	soup = BeautifulSoup(result.text,'html.parser')
-	print(soup.font.text.replace(u'\xa0', ' '))
+	print(soup.font.text.replace(u'\xa0\xa0', ' '))
 
 
 if __name__ == "__main__":
 	pool = threadpool.ThreadPool(10)
-	url_list = ["114.114.114.114"]
+	url_list = ["202.106.0.60"]
 	req = threadpool.makeRequests(main,url_list)
 	for i in req:
 		pool.putRequest(i)
