@@ -11,6 +11,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf-8')
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 pd.set_option('max_colwidth',200)
+pd.set_option("mode.chained_assignment", None)
 
 def main(ip):
 	url = "https://ip38.com/ip.php?ip="+str(ip)
