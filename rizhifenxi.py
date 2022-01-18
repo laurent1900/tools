@@ -34,12 +34,14 @@ def main(ip):
 	}
 	result = requests.get(url,headers=headers,timeout=30)
 	soup = BeautifulSoup(result.text,'html.parser')
-	html = soup.font.text.replace(u'\xa0\xa0', ' ')
+	html = soup.font.text.replace(u'\xa0\xa0', ' ').replace('IP详细地址：','')
 	ip_loc.append((ip,html))
 	# print(soup.font.text.replace(u'\xa0\xa0', ' '))
 
 if __name__ == '__main__':
-	data = pd.read_table('2022.01.16.all.log',header=None,sep=' ') #读取Excel
+	data = pd.read_table('2022.01.15.all.log',header=None,sep=' ') #读取Excel
+
+	print('IP行为统计：\n')
 
 	top10_200 = data.loc[data[6].isin([200])].loc[:,0].value_counts().head(10)
 	print('200:')
@@ -57,6 +59,51 @@ if __name__ == '__main__':
 	print('403:')
 	print(top10_403,'\n')
 
+	top10_404 = data.loc[data[6].isin([404])].loc[:,0].value_counts().head(10)
+	print('404:')
+	print(top10_404,'\n')
+
+	print('IP成分分析：\n')
+
+	bingbot = data.loc[data[9].str.contains("bingbot")].loc[:,0].drop_duplicates().values
+	print('bingbot:')
+	print(bingbot,'\n')
+
+	Baiduspider = data.loc[data[9].str.contains("Baiduspider")].loc[:,0].drop_duplicates().values
+	print('Baiduspider:')
+	print(Baiduspider,'\n')
+
+	Googlebot = data.loc[data[9].str.contains("Googlebot")].loc[:,0].drop_duplicates().values
+	print('Googlebot:')
+	print(Googlebot,'\n')
+
+	MSNBot = data.loc[data[9].str.contains("MSNBot")].loc[:,0].drop_duplicates().values
+	print('MSNBot:')
+	print(MSNBot,'\n')
+
+	YoudaoBot = data.loc[data[9].str.contains("YoudaoBot")].loc[:,0].drop_duplicates().values
+	print('YoudaoBot:')
+	print(YoudaoBot,'\n')
+
+	Sogou = data.loc[data[9].str.contains("Sogou")].loc[:,0].drop_duplicates().values
+	print('Sogou:')
+	print(Sogou,'\n')
+
+	ChinasoSpider = data.loc[data[9].str.contains("ChinasoSpider")].loc[:,0].drop_duplicates().values
+	print('ChinasoSpider:')
+	print(ChinasoSpider,'\n')
+
+	Sosospider = data.loc[data[9].str.contains("Sosospider")].loc[:,0].drop_duplicates().values
+	print('Sosospider:')
+	print(Sosospider,'\n')
+
+	yisouspider = data.loc[data[9].str.contains("yisouspider")].loc[:,0].drop_duplicates().values
+	print('yisouspider:')
+	print(yisouspider,'\n')
+
+	EasouSpider = data.loc[data[9].str.contains("EasouSpider")].loc[:,0].drop_duplicates().values
+	print('EasouSpider:')
+	print(EasouSpider,'\n')
 
 
 	ips = [] #初始化问题IP列表
@@ -88,6 +135,6 @@ if __name__ == '__main__':
 		value3 = [value1,value2] #将IP归属地和访问次数拼接成一个列表
 		dict_c[key] = value3 #将新值赋值给字典dict_c
 
-	print("以下IP访问了文件下载URL并触发了跳转，疑似恶意访问：")
+	print("以下IP访问了文件下载URL并触发了跳转，疑似尝试未授权下载文件：")
 	for i in dict_c:
 		print(i,dict_c[i][0],dict_c[i][1])
