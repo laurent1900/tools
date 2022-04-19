@@ -27,15 +27,24 @@ def main(ip):
 				"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7",
 				"Cookie": "Hm_lvt_2343fe6f116e92cb302292841b8592e1=1641955179; Hm_lpvt_2343fe6f116e92cb302292841b8592e1=1641955463"
 	}
-	result = requests.get(url,headers=headers,timeout=30)
-	soup = BeautifulSoup(result.text,'html.parser')
-	print(soup.font.text.replace(u'\xa0\xa0', ' '))
+	try:
+		result = requests.get(url,headers=headers,timeout=30)
+		soup = BeautifulSoup(result.text,'html.parser')
+		html = soup.font.text.replace(u'\xa0\xa0', ' ').replace('IP详细地址：','')
+		ip_loc.append((ip,html))
+	except Exception as e:
+		print(ip+' fail','失败原因：'+str(e))
+		pass
 
 
 if __name__ == "__main__":
-	pool = threadpool.ThreadPool(10)
-	url_list = ["202.106.0.60"]
+	ip_loc = []
+	pool = threadpool.ThreadPool(5)
+	url_list = ["116.196.90.163","111.203.85.162","111.203.85.162","111.203.85.162","111.203.85.162","111.203.85.162","111.203.85.162","111.203.85.162","111.203.85.140","219.239.42.88","111.203.85.162","111.203.85.162","39.105.180.130","111.203.85.162","111.203.85.162","111.203.85.162","111.203.85.163","123.56.111.7","111.203.85.162","111.203.85.162","111.203.85.161","111.203.85.162","47.95.246.200","47.95.246.200","60.190.243.164","47.95.246.200","47.95.246.200","111.203.85.162","111.203.85.162","111.203.85.161","111.203.85.162","47.95.246.200","47.95.246.200","60.190.243.164","47.95.246.200","47.95.246.200","111.203.85.162","39.105.180.130","39.105.167.59","111.203.85.162","39.96.126.202","123.57.72.209","47.95.234.135","39.96.126.202","39.107.240.39","39.107.240.39","111.203.85.161","111.203.85.162","39.105.79.92","39.105.79.92","111.203.85.162"]
 	req = threadpool.makeRequests(main,url_list)
 	for i in req:
 		pool.putRequest(i)
 	pool.wait()
+
+	for i in ip_loc:
+		print(i[0],i[1].split()[1])
