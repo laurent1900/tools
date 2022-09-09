@@ -62,7 +62,6 @@ def dingding(msg):
 
 #CMDB获取URL
 def get_ips():
-	f = open('BLJ.csv', mode='a',encoding='utf-8',newline='')
 	url = "XXXXXX"
 	headers = {
 	"Host": "XXXX",
