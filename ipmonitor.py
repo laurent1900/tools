@@ -76,8 +76,9 @@ def get_ips():
 			ip = i.split(',')[7]
 			if ip != '' and 'IP' not in ip:
 				if '||' in ip:
-					ip = ip.replace('||','')
-					ips.append(ip)
+					ip = ip.split('||')
+					for i in ip:
+						ips.append(i)
 				else:
 					ips.append(ip)
 		except Exception as e:
