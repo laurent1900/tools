@@ -20,6 +20,6 @@ def main(i):
 		pass
 
 if __name__ == '__main__':
-	domains = ["8f8.com"]
+	domains = [""]
 	for i in domains:
 		main(i)
