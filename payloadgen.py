@@ -27,5 +27,5 @@ def iploc():
 	print(r.text)
 
 if __name__ == '__main__':
-	gen2(15)
+	gen(4)
 	# iploc()

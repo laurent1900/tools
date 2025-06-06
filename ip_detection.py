@@ -38,17 +38,20 @@ if __name__ == '__main__':
 	# C_detection(ip_processing(ip))
 	# s = IPSet([IP('10.0.0.0/8')])
 	# print(s)
-	ip = IP("10.0.0.0/16")
-	first_ips = []
-	end_ips = []
+	# ip = IP("10.0.0.0/16")
+	# first_ips = []
+	# end_ips = []
+	# for i in ip:
+	# 	first_ip = re.match(r"(\d{1,3}\.){3}1$",str(i))
+	# 	end_ip = re.match(r"(\d{1,3}\.){3}254$",str(i))
+	# 	if first_ip != None:
+	# 		# print(first_ip,end_ip)
+	# 		first_ips.append(str(i))
+	# 	elif end_ip != None:
+	# 		end_ips.append(str(i))
+	# for i in zip(first_ips,end_ips):
+	# 	# print(type(i))
+	# 	C_detection(i)
+	ip = IP("10.11.205.0/24")
 	for i in ip:
-		first_ip = re.match(r"(\d{1,3}\.){3}1$",str(i))
-		end_ip = re.match(r"(\d{1,3}\.){3}254$",str(i))
-		if first_ip != None:
-			# print(first_ip,end_ip)
-			first_ips.append(str(i))
-		elif end_ip != None:
-			end_ips.append(str(i))
-	for i in zip(first_ips,end_ips):
-		# print(type(i))
-		C_detection(i)
+		print(i)
