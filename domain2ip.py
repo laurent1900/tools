@@ -20,6 +20,6 @@ def main(i):
 		pass
 
 if __name__ == '__main__':
-	domains = [""]
+	domains = ["pop.djbx.com","smtp.djbx.com","imap.djbx.com","mail.djbx.com","ptr1.dzbd.djbx.com","gxrc2103._domainkey.djbx.com","_dmarc.djbx.com","xiaoguan.djbx.com","softwarecenter.djbx.com","msoid.djbx.com","msg.djbx.com","msg.djbx.com","mail._domainkey.msg.djbx.com","_dmarc.msg.djbx.com","dzbd.djbx.com","dzbd.djbx.com","mail._domainkey.dzbd.djbx.com","_dmarc.dzbd.djbx.com","d2558e22ef7d5237.xiaoguan.djbx.com"]
 	for i in domains:
 		main(i)
