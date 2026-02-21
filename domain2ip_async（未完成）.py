@@ -23,6 +23,6 @@ async def run(domains):
 	return results
  
 if __name__ == '__main__':
-	domains = ['www.baidu.com', 'www.gamersky.com', 'www.djbx.com']
+	domains = ['www.baidu.com', 'www.gamersky.com']
 	results = asyncio.run(run(domains))
 	print(results)
